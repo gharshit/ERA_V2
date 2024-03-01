@@ -114,7 +114,7 @@ As we are increasing the Learning Rate from 0.1 to 2, the rate at which loss val
 <br>
 
    For better understanding, structured summary of the network is as follows:
-   1. **`conv1`**:
+1. **`conv1`**:
     - Input: 1 channel (grayscale image)
     - Output: 16 channels
     - Layers:
