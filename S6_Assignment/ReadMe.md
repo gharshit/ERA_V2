@@ -2,9 +2,7 @@
 
 <br>
 
-# Part 1
-
-
+# Part 1 : (Excel: S6_Assignment/Part1/Class BP File_HG.xlsx)
 
 ## Overview
 
@@ -23,7 +21,8 @@
 Below is an example of a basic fully connected neural network.
 
 
-![Example](image.png)
+![Example](https://github.com/gharshit/ERA_V2/assets/19635712/1231dc8a-80de-430e-bdad-3d8fd6c26d58)
+
 
 
 We will now use the above example to understand how we can calculate the three components which we defined in the overview.
@@ -31,8 +30,9 @@ We will now use the above example to understand how we can calculate the three c
 <br>
 
 
-## Excel Screenshot (sheetname:main) 
-![Excel Screenshot](image-7.png)
+## Excel Screenshot (Refer to sheet_main in excel) 
+![Excel Screenshot](https://github.com/gharshit/ERA_V2/assets/19635712/983e17e7-eebe-4216-b9d7-b0bb843c35d7)
+
 The image is screenshot of excel filled with formulae and values for backpropagation.
 
 <br>
@@ -41,13 +41,15 @@ The image is screenshot of excel filled with formulae and values for backpropaga
 
 - ### **Forward Propagation**
 
-   ![Forward Pass](image-1.png)
+   ![Forward Pass](https://github.com/gharshit/ERA_V2/assets/19635712/3ae6ac05-5ce6-45e1-aaed-4c6a2e0b1e20)
+
 
 <br>
 
 - ### **Loss Calculation**
 
-   ![Loss Calculation](image-2.png)
+   ![Loss Calculation](https://github.com/gharshit/ERA_V2/assets/19635712/730a6d96-2c67-4047-90bb-7518f300cc9f)
+
 
 <br>
 
@@ -58,14 +60,16 @@ The image is screenshot of excel filled with formulae and values for backpropaga
 
    - First we will calculate the gradients of weights w5, w6, w7 and w8
 
-     ![Gradients w5tow8](image-4.png)
+     ![Gradients w5tow8](https://github.com/gharshit/ERA_V2/assets/19635712/2fc9d014-cf3a-4543-a147-373df15855ed)
+
 
      <br>
 
 
    - Calculating the gradients of weights w1, w2, w3 and w4
 
-     ![Gradients w1tow4](image-5.png)
+     ![Gradients w1tow4](https://github.com/gharshit/ERA_V2/assets/19635712/60627b05-3ef8-44a4-9ce2-ec57e409e905)
+
 
 
 
@@ -79,5 +83,8 @@ Using the above calculated gradients, we will update the weights. Then in an ite
 
 <br>
 
+## Change in Loss Value vs Learning Rate (Refer to sheet_LRtrend in excel) 
+![LR Change](https://github.com/gharshit/ERA_V2/assets/19635712/5decbb38-3ec7-49d2-9353-9f5d0401d9d6)
 
+As we are increasing the Learning Rate from 0.1 to 2, the rate at which loss value drops/changes is increasing. So for larger LR value, the neural network is coverging faster to the optimal solution ***for the above given example and values***.
 
