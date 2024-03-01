@@ -1,4 +1,4 @@
-[Click for Part2](https://github.com/gharshit/ERA_V2/edit/main/S6_Assignment/README.md#part-2--neural-network-with-constrains)
+[Click for Part2](#part-2--neural-network-with-constrains)
 
 <br>
 
