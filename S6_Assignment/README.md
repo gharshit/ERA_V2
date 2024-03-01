@@ -98,6 +98,8 @@ As we are increasing the Learning Rate from 0.1 to 2, the rate at which loss val
 
 # Part 2 : (Neural Network with constrains)
 
+<br>
+
 ### Constraints:
 
    ![constraints](https://github.com/gharshit/ERA_V2/assets/19635712/b9d28a28-9190-4bb7-b49d-3b2a3437625a)
@@ -108,6 +110,8 @@ As we are increasing the Learning Rate from 0.1 to 2, the rate at which loss val
 ### Network Structure:
 
    ![structure](https://github.com/gharshit/ERA_V2/assets/19635712/41b6eb64-7c2f-4d33-86b0-66a84480e985)
+
+<br>
 
    For better understanding, structured summary of the network is as follows:
    1. **`conv1`**:
@@ -152,5 +156,23 @@ As we are increasing the Learning Rate from 0.1 to 2, the rate at which loss val
     - Input: 32 features (from GAP)
     - Output: 10 classes (for classification)
     - Applies log softmax activation for the output layer
+
+<br>
+
+### Training Logs (last 10 epochs, for more refer to notebook)
+
+   ![Logs](https://github.com/gharshit/ERA_V2/assets/19635712/863e7f8d-fe88-4c45-9cca-b3ae1b15ff7a)
+
+<br>
+
+### Accuracy and Loss Plots:
+
+   ![Accuracy and Loss](https://github.com/gharshit/ERA_V2/assets/19635712/8b27bca1-e9d8-4345-98be-d20dc59e5b13)
+
+
+
+
+
+
 
 
