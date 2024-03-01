@@ -1,4 +1,4 @@
-[Click for Part2](#Part2)  
+[Click for Part2](https://github.com/gharshit/ERA_V2/edit/main/S6_Assignment/README.md#part-2--neural-network-with-constrains)
 
 <br>
 
@@ -87,4 +87,70 @@ Using the above calculated gradients, we will update the weights. Then in an ite
 ![LR Change](https://github.com/gharshit/ERA_V2/assets/19635712/5decbb38-3ec7-49d2-9353-9f5d0401d9d6)
 
 As we are increasing the Learning Rate from 0.1 to 2, the rate at which loss value drops/changes is increasing. So for larger LR value, the neural network is coverging faster to the optimal solution ***for the above given example and values***.
+
+
+<br>
+
+---
+
+<br>
+
+
+# Part 2 : (Neural Network with constrains)
+
+### Constraints:
+
+   ![constraints](https://github.com/gharshit/ERA_V2/assets/19635712/b9d28a28-9190-4bb7-b49d-3b2a3437625a)
+
+<br>
+
+
+### Network Structure:
+
+   ![structure](https://github.com/gharshit/ERA_V2/assets/19635712/41b6eb64-7c2f-4d33-86b0-66a84480e985)
+
+   For better understanding, structured summary of the network is as follows:
+   1. **`conv1`**:
+    - Input: 1 channel (grayscale image)
+    - Output: 16 channels
+    - Layers:
+        - 3x3 Convolution (16 filters)
+        - ReLU activation
+        - Batch normalization
+        - 3x3 Convolution (16 filters)
+        - ReLU activation
+        - Batch normalization
+        - 2x2 Max Pooling (stride 2)
+        - Dropout (with a rate of 0.025)
+
+2. **`conv2`**:
+    - Input: 16 channels
+    - Output: 16 channels
+    - Layers:
+        - 3x3 Convolution (24 filters)
+        - ReLU activation
+        - Batch normalization
+        - 3x3 Convolution (32 filters)
+        - ReLU activation
+        - Batch normalization
+        - 2x2 Max Pooling (stride 2)
+        - Dropout (with a rate of 0.025)
+        - 1x1 Convolution (16 filters)   
+
+3. **`conv3`**:
+    - Input: 16 channels
+    - Output: 32 channels
+    - Layers:
+        - 3x3 Convolution with padding (32 filters)
+        - ReLU activation
+        - Batch normalization
+
+4. **`Global Average Pooling (GAP)`**:
+    - Reduces spatial dimensions to 1x1 (averages feature maps across spatial dimensions)
+
+5. **`Fully Connected Layer (Linear)`**:
+    - Input: 32 features (from GAP)
+    - Output: 10 classes (for classification)
+    - Applies log softmax activation for the output layer
+
 
