@@ -96,7 +96,7 @@ As we are increasing the Learning Rate from 0.1 to 2, the rate at which loss val
 <br>
 
 
-# Part 2 : (Neural Network with constrains)
+# Part 2 : (Neural Network with constrains:S6_Assignment/Part2/ERA_V2_Session_6_HG.ipynb)
 
 <br>
 
