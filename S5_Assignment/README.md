@@ -16,6 +16,16 @@ For more information refer to this [link](https://en.wikipedia.org/wiki/MNIST_da
 This repo contains python code to train a convolutional neural network to classify images of handwritten digits (MNIST dataset). The neural net used contains 4 convolution layer followed by 2 fully connected layers as the underlying architecture. For the training, Stochastic Gradient Descent is used with loss fucntion as Negative Log Likelihood.  
 
 <br>
+
+
+---
+##  **Training Metrics** 
+
+![S5 Training Metrics](https://github.com/gharshit/ERA_S5_Assignment/assets/19635712/da38ad30-65e1-4cfc-b90d-0703da90fa20)
+
+
+
+---
 <br>
 
 ## Code Structure
@@ -28,6 +38,10 @@ This repo contains python code to train a convolutional neural network to classi
 <br>**Code Block 5**: Load to device and get summary of the model.
 <br>**Code Block 6**: Setup optimizer, scheduler, loss function and call function to train the neural network on the dataset in batches.
 <br>**Code Block 7**: Plot the train/test accurcy and loss values as epoch increases.
+
+
+*Above code imports the model struture from model.py and other helper functions from utils.py to execute the code efficiently.
+
 
 <br>
 
@@ -105,9 +119,6 @@ The script offers functions to visualize the dataset and training metrics:<br>
 
 <br>
 
----
-####  **Training Metrics** 
 
-![S5 Training Metrics](https://github.com/gharshit/ERA_S5_Assignment/assets/19635712/c55e0245-0f12-4841-b33d-36b7d39c8ad2)
 
 
