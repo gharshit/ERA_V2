@@ -32,7 +32,7 @@ We will now use the above example to understand how we can calculate the three c
 
 
 ## Excel Screenshot (Refer to sheet_main in excel) 
-![Excel Screenshot](https://github.com/gharshit/ERA_V2/assets/19635712/983e17e7-eebe-4216-b9d7-b0bb843c35d7)
+![Excel Screenshot](https://github.com/gharshit/ERA_V2/assets/19635712/6bc6c52b-b028-4705-8d7d-b27eecbcec94)
 
 The image is screenshot of excel filled with formulae and values for backpropagation.
 
