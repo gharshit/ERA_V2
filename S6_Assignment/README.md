@@ -94,7 +94,7 @@ As we are increasing the Learning Rate from 0.1 to 2, the rate at which loss val
 
 
 
-## x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
+## x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
 
 
 <br>
@@ -102,76 +102,106 @@ As we are increasing the Learning Rate from 0.1 to 2, the rate at which loss val
 # Part 2 : [S6_Assignment/Part2/ERA_V2_Session_6_HG.ipynb]
 
 <br>
-The aim here is to build a CNN architecture which can be used for MNIST image classification task, however the NN must follow the below constraints.
+
+### *Languages/Framework : [Python](https://www.python.org/) and [Pytorch](https://pytorch.org/)
+
+### *Algorithm : [Convolutional Neural Networks](https://en.wikipedia.org/wiki/Convolutional_neural_network)
+
+#### About Dataset
+
+The MNIST database (Modified National Institute of Standards and Technology database) is a large database of handwritten digits that is commonly used for training various image processing systems.The database is also widely used for training and testing in the field of machine learning. It was created by "re-mixing" the samples from NIST's original datasets. The creators felt that since NIST's training dataset was taken from American Census Bureau employees, while the testing dataset was taken from American high school students, it was not well-suited for machine learning experiments. Furthermore, the black and white images from NIST were normalized to fit into a 28x28 pixel bounding box and anti-aliased, which introduced grayscale levels.<br>
+For more information refer to this [link](https://en.wikipedia.org/wiki/MNIST_database).
+
+
+#### Overall Context
+
+This part contains python code to train a convolutional neural network to classify images of handwritten digits (MNIST dataset). For the training, Stochastic Gradient Descent is used with loss function as Negative Log Likelihood. This code is developed to achieve a certain validation accuracy with contraints on number of parameters and epochs. To achieve such a network, different techniques such as batch-normalization, regularization etc are implemented. Detailed information on the network can be found below.
+
+<br>
 
 ### Constraints:
 
-   ![constraints](https://github.com/gharshit/ERA_V2/assets/19635712/b9d28a28-9190-4bb7-b49d-3b2a3437625a)
+Below are the contraints which are to be considered while developing the architecture
+   - 99.4% validation accuracy :white_check_mark:
+   - Less than 20k model parameters :white_check_mark:
+   - Less than 20 epochs :white_check_mark:
+   - Have used BN, dropout :white_check_mark:
+   - GAP followed by Fully Connected Layer :white_check_mark:
 
 <br>
 
 
 ### Network Structure:
 
-   ![structure](https://github.com/gharshit/ERA_V2/assets/19635712/41b6eb64-7c2f-4d33-86b0-66a84480e985)
+   ![NN structure](https://github.com/gharshit/ERA_V2/assets/19635712/2deb76d4-4df0-4523-811b-6eca249a711c)
 
 <br>
 
    For better understanding, structured summary of the network is as follows:
-1. **`conv1`**:
-    - Input: 1 channel (grayscale image)
-    - Output: 16 channels
-    - Layers:
-        - 3x3 Convolution (16 filters)
-        - ReLU activation
-        - Batch normalization
-        - 3x3 Convolution (16 filters)
-        - ReLU activation
-        - Batch normalization
-        - 2x2 Max Pooling (stride 2)
-        - Dropout (with a rate of 0.025)
+   
+1. `Input Block`:
+   - Convolution: 1 input channel -> 12 output channels, kernel size (3x3), no padding
+   - Activation: ReLU
+   - Normalization: Batch normalization
+   - Regularization: Dropout (p=0.1)
 
-2. **`conv2`**:
-    - Input: 16 channels
-    - Output: 16 channels
-    - Layers:
-        - 3x3 Convolution (24 filters)
-        - ReLU activation
-        - Batch normalization
-        - 3x3 Convolution (32 filters)
-        - ReLU activation
-        - Batch normalization
-        - 2x2 Max Pooling (stride 2)
-        - Dropout (with a rate of 0.025)
-        - 1x1 Convolution (16 filters)   
+2. `Convolution Block 1`:
+   - Convolution: 12 input channels -> 24 output channels, kernel size (3x3), no padding
+   - Activation: ReLU
+   - Normalization: Batch normalization
+   - Regularization: Dropout (p=0.1)
 
-3. **`conv3`**:
-    - Input: 16 channels
-    - Output: 32 channels
-    - Layers:
-        - 3x3 Convolution with padding (32 filters)
-        - ReLU activation
-        - Batch normalization
+3. `Transition Block 1`:
+   - Convolution: 24 input channels -> 12 output channels, kernel size (1x1), no padding
+   - Pooling: Max pooling (2x2), stride 2
 
-4. **`Global Average Pooling (GAP)`**:
-    - Reduces spatial dimensions to 1x1 (averages feature maps across spatial dimensions)
+4. `Convolution Block 2`:
+   - Convolution 1: 12 input channels -> 20 output channels, kernel size (3x3), no padding
+   - Activation: ReLU
+   - Normalization: Batch normalization (momentum=0.2)
+   - Regularization: Dropout (p=0.1)
+   - Convolution 2: 20 input channels -> 32 output channels, kernel size (3x3), padding 1
+   - Activation: ReLU
+   - Normalization: Batch normalization (momentum=0.2)
+   - Regularization: Dropout (p=0.1)
 
-5. **`Fully Connected Layer (Linear)`**:
-    - Input: 32 features (from GAP)
-    - Output: 10 classes (for classification)
-    - Applies log softmax activation for the output layer
+5. `Transition Block 2`:
+   - Convolution: 32 input channels -> 16 output channels, kernel size (1x1), no padding
+   - Pooling: Max pooling (2x2), stride 2
+
+6. `Convolution Block 3`:
+   - Convolution 1: 16 input channels -> 16 output channels, kernel size (3x3), padding 1
+   - Activation: ReLU
+   - Normalization: Batch normalization (momentum=0.2)
+   - Regularization: Dropout (p=0.1)
+   - Convolution 2: 16 input channels -> 32 output channels, kernel size (3x3), padding 1
+   - Activation: ReLU
+   - Normalization: Batch normalization (momentum=0.2)
+   - Regularization: Dropout (p=0.1)
+
+7. `Global Average Pooling`:
+   - AdaptiveAvgPool2d: Reduce spatial dimensions to 1x1
+
+8. `Fully Connected Layer`:
+   - Linear: 32 input features -> 10 output classes
 
 <br>
 
-### Training Logs (last 10 epochs, for more refer to notebook)
+### Training Logs (snapshot is of last 10 epochs, for more refer to notebook)
 
-   ![Logs](https://github.com/gharshit/ERA_V2/assets/19635712/863e7f8d-fe88-4c45-9cca-b3ae1b15ff7a)
+   - Number of Epochs: 19 
+   - Final training accuracy: 99.04%
+   - Final validation accuracy: 99.47%
+
+   ![Logs](https://github.com/gharshit/ERA_V2/assets/19635712/4093ad38-801c-49cb-8136-9d95288b6747)
+
 
 <br>
 
 ### Accuracy and Loss Plots:
 
-   ![Accuracy and Loss](https://github.com/gharshit/ERA_V2/assets/19635712/8b27bca1-e9d8-4345-98be-d20dc59e5b13)
+   ![Accuracy and Loss](https://github.com/gharshit/ERA_V2/assets/19635712/6e241cde-3989-4da8-be4a-11ea93417dfb)
+
 
 
 
