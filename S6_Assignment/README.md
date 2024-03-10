@@ -1,6 +1,7 @@
-[Click for Part2](#part-2--neural-network-with-constrains)
+[Click for Part2](#x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x)
 
 <br>
+
 
 # Part 1 : (Excel: S6_Assignment/Part1/Class BP File_HG.xlsx)
 
@@ -91,12 +92,14 @@ As we are increasing the Learning Rate from 0.1 to 2, the rate at which loss val
 
 <br>
 
----
+
+
+## x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x
+
 
 <br>
 
-
-# Part 2 : (Neural Network with constrains:S6_Assignment/Part2/ERA_V2_Session_6_HG.ipynb)
+# Part 2 : [S6_Assignment/Part2/ERA_V2_Session_6_HG.ipynb]
 
 <br>
 The aim here is to build a CNN architecture which can be used for MNIST image classification task, however the NN must follow the below constraints.
