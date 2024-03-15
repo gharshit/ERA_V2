@@ -1,2 +1,2 @@
 # ERA_V2
-Assigments of ERA_V2 course
+Assignments of ERA_V2 course
