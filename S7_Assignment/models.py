@@ -77,7 +77,7 @@ class Model_1(nn.Module):
         x = self.pool2(x)
 
         x = self.convblock6(x)
-        x = x.view(x.size(0),-1)        # Flatten for fully connected layer
+        x = x.view(x.size(0),-1)        # Flatten 
     
         return F.log_softmax(x,dim=1)   # Apply log_softmax activation function for the output layer.
 
@@ -186,7 +186,7 @@ class Model_2(nn.Module):
 
         x = self.convblock7(x)
         x = self.convblock7b(x)
-        x = x.view(x.size(0),-1)        # Flatten for fully connected layer
+        x = x.view(x.size(0),-1)        # Flatten
     
         return F.log_softmax(x,dim=1)   # Apply log_softmax activation function for the output layer.
 
