@@ -157,7 +157,7 @@ Above changes doesn't require any change in the model architecture but in the wo
 
 ---
 
-#### 2. **model.py** [link](./models.py)
+#### 2. **models.py** [link](./models.py)
 This file contains the definition of a convolutional neural network (CNN) implemented in PyTorch for image classification tasks. The file has two model structure namely *Model_1* and *Model_2*. 
 For step-1 of assignent, Model_1 is used and for step-2/step-3, Model_2 is used in the code. In step-3, the changes required are in the transformation code and lr scheduler so Model_2 is only used to execute it.
 
