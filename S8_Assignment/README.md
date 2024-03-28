@@ -124,9 +124,9 @@ This file contains the definition of a convolutional neural network (CNN) implem
 
 The model architecture for this assisgnment is kept same across the three experiment with a conditional function to handle normalization criteria as per passed variable (ln/gn/bn).
 
-if 'bn': set normalization to BatchNorm(# of channels in that layer)
-if 'gn': set normalization to GroupNorm(num_groups = **4**, # of channels in that layer)
-if 'bn': set normalization to LayerNorm(num_groups = **1**, # of channels in that layer)
+    if 'bn': set normalization to BatchNorm(# of channels in that layer)
+    if 'gn': set normalization to GroupNorm(num_groups = **4**, # of channels in that layer)
+    if 'bn': set normalization to LayerNorm(num_groups = **1**, # of channels in that layer)
 
 Below is the architecture with BatchNorm normalization:
 
