@@ -13,83 +13,38 @@ For more information refer to this [link](https://en.wikipedia.org/wiki/CIFAR-10
 
 #### Overall Context
 
-This repo contains python code to train a convolutional neural network to classify images of `CIFAR-10` dataset. The aim of these experiments is to assess the outcome of different normalization techniques such as  `Batch Normalization` , `Group Normalization` and `Layer Normalization`. The architecture in each of the experiment is kept same with same number of parameters so that normalization techniques can be assessed on the same scale.
+This repo contains python code to train a convolutional neural network to classify images of `CIFAR-10` dataset. The aim of this experiments execute the different set of `Data Augmentation`, different convolutions like `dilated convolution`, `depthwise separable convolutions` and grouped convolutions. Following is the objective and constraints of the assignment:
 
-    Architecture Skeleton: C1 > C2 > **c3** > *P1* > C4 > C5 > C6 > **c7** > *P2* > C8 > C9 > C10 > GAP > **c11**
-
-    Number of Parameters: 48,448
-
-    Max Epoch: 20
-
-
-*What is the importance of normalization of layers in CNN?*
-
-Normalization in Convolutional Neural Networks (CNNs) plays a crucial role in improving the performance of the model. Here are some key points:
-
-1. **Stabilizing the Gradient Descent**: Normalization helps to stabilize the gradient descent step, which allows us to use larger learning rates or helps models converge faster for a given learning rate.
-
-2. **Features on a Similar Scale**: Normalization ensures that the different features are on a similar scale. This is important because it helps to balance the contribution of different features to the model.
-
-3. **Reducing Internal Covariate Shift**: Normalization reduces the amount of change in the distribution of the input of layers, providing a more robust ground for the deeper layers during the learning process.
-
-4. **Accelerating Training**: Normalization can accelerate the training of neural networks by allowing each layer of the network to learn more independently of other layers.
-
-5. **Regularization**: Normalization also acts as a form of regularization, reducing the risk of overfitting.
----
-<br>
-
-
-### Accuracy Details
-
-Normalization Technique | Notebook Link | Training Accuracy | Testing Accuracy
---- | --- | --- | ---
-Batch Normalization | [link](./ERA_Session8_BatchNormalization.ipynb) | 81.10% | 78.86%
-Group Normalization | [link](./ERA_Session8_GroupNormalization.ipynb) | 80.30% | 77.88%
-Layer Normalization | [link](./ERA_Session8_LayerNormalization.ipynb) | 79.91% | 76.94%
+![Assignment09](https://github.com/gharshit/ERA_V2/assets/19635712/b6213ea0-f52a-4d0f-b46b-212621519996)
 
 <br>
 
----
+#### Solution Context
 
-### Findings from the experiments
+        1. Number of Epochs used: 80
+        2. Total number of parameters: 199,810
+        3. Total RF of the architecture used is 95 (>44).
+        4. Training Accuracy Achieved: 85.39%
+        5. Testing Accuracy Achieved: 84.59%
+        6. Data Augmenation Used: 
+        
+            # Apply horizontal flip
+            A.HorizontalFlip(p=0.1)
 
-1. Batch Normalization achieves highest accruracy in both training and testing w.r.t other techniques.
-2. Above is due to the fact that BN works with one channel only (or one feature) across the batch which helps the algorithm to <br>
-   2.a Capture Internal Covariance Shift which GN/LN lack.<br>
-   2.b Normalize across images which serves better regularization than layer(GN/LN).<br>
-   2.c Have feature across the batch on same scale which stabizes the gradient descent when calculating backprop gradient for a batch.
-3. Group Normalization has better accuracy than Layer Normalization, which can be due to the fact the some features(channel) instead all, share some common properties (are correlated) and hence normalization serves better in groups than whole layer.
+            # Apply shift, scale and rotate
+            A.ShiftScaleRotate(shift_limit=0.1, scale_limit=0.2, rotate_limit=15, p=0.1)
+        
+            # Apply removal of box regions from the image to introduce regularization
+            A.CoarseDropout(max_holes = 1, max_height=16, max_width=16, min_holes = 1, min_height=16, min_width=16, fill_value=[q*255 for q in mean_list],         mask_fill_value = None,p=0.3)
 
-<br>
-
----
-
-
-### Accuracy and Loss Plots
-
-![A&LPlot](https://github.com/gharshit/ERA_V2/assets/19635712/14038dbd-ef17-4909-801f-a461cd79b2b5)
-
-<br>
-
----
-
-### Misclassified Images
+        7. Dilated convolution is being in first convolution block- 3rd layer. [Conv2d-13]
+        8. First 3 Convolutional Blocks end with the convolution of stride 2. [Conv2d-13, Conv2d-26, Conv2d-39]
+        9. Depthwise Separable Convolutions are being used in the last 2 convolutions blocks. [Conv2d-30, Conv2d-34 & Conv2d-43, Conv2d-47, Conv2d-51]
 
 
-`Batch Normalization `
-![BN](https://github.com/gharshit/ERA_V2/assets/19635712/45a9a09a-fcaa-49ec-bcd9-07cc7d2c266e)
+#### Plots
 
-<br>
-
-`Group Normalization'
-![GN](https://github.com/gharshit/ERA_V2/assets/19635712/1829dc40-be83-4ad3-8ecf-2dba74c02409)
-
-<br>
-
-`Layer Normalization`
-![LN](https://github.com/gharshit/ERA_V2/assets/19635712/a4437a10-7f6e-4507-adb0-2a143cfad422)
-
-
+![A&Lplots](https://github.com/gharshit/ERA_V2/assets/19635712/c95a3c2a-faec-42d1-8963-89981e57901a)
 
 <br>
 
@@ -97,8 +52,8 @@ Layer Normalization | [link](./ERA_Session8_LayerNormalization.ipynb) | 79.91% |
 
 ### Code Structure
 
-####  1. **ERA_Session8_XNormalization.ipynb**
-Each normalization technique (X) experiment has the following code flow:
+####  1. **train_S9.ipynb** [link](./train_S9.ipynb)
+The driver code has the following code flow:
 
     Code Block 1: Contains the necessary libraries and hyperparamters.
 
@@ -116,21 +71,19 @@ Each normalization technique (X) experiment has the following code flow:
 
 
 *Above code imports the model struture from model.py and other helper functions from utils.py to execute the code efficiently.
+
+
 <br>
 
 
 #### 2. **models.py** [link](./models.py)
-This file contains the definition of a convolutional neural network (CNN) implemented in PyTorch for image classification tasks. Some older models (from S6 & S7) are also included in the file for reference.
+This file contains the definition of a convolutional neural network (CNN) implemented in PyTorch for image classification tasks. 
 
-The model architecture for this assisgnment is kept same across the three experiment with a conditional function to handle normalization criteria as per passed variable (ln/gn/bn).
+The model architecture of the assignment is into four blocks such as C1, C2, C3 and C4. Except C4, all convolution blocks end with the convolution of stride 2. Refer to the code in models.py for more info
 
-    if 'bn': set normalization to BatchNorm(# of channels in that layer)
-    if 'gn': set normalization to GroupNorm(num_groups = **4**, # of channels in that layer)
-    if 'bn': set normalization to LayerNorm(num_groups = **1**, # of channels in that layer)
+Below is the architecture with BatchNorm normalization: <br>
+![skeleton](https://github.com/gharshit/ERA_V2/assets/19635712/1d084f97-bb8b-47a6-860d-59e1b6b9d785)
 
-Below is the architecture with BatchNorm normalization:
-
-![skeleton](https://github.com/gharshit/ERA_V2/assets/19635712/29fe28ae-4eda-495d-9fd1-5a82bd9bdb7f)
 
 <br>
 
